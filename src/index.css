@@ -1,47 +1,65 @@
-/* TaskFlow - Global Design System & CSS Reset */
+/* TaskFlow - Light Premium SaaS Design System & CSS Reset */
 
 :root {
-  /* Color Palette - Premium Obsidian Dark Mode */
-  --bg-page: #09090b;
-  --bg-card: #121215;
-  --bg-card-hover: #18181c;
-  --bg-surface: #1c1c21;
-  --bg-input: #141418;
+  /* Color Palette - Premium Light Mode (Clean, Calm, Trustworthy) */
+  --bg-page: #ffffff;
+  --bg-secondary: #f8f9fc;
+  --bg-soft-section: #f5f6ff;
+  --bg-card: #ffffff;
+  --bg-card-hover: #ffffff;
+  --bg-surface: #f8f9fc;
+  --bg-input: #ffffff;
   
   /* Borders & Dividers */
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-strong: rgba(255, 255, 255, 0.16);
-  --border-accent: rgba(99, 102, 241, 0.4);
+  --border-subtle: #e7eaf0;
+  --border-strong: #d0d5dd;
+  --border-accent: rgba(91, 95, 239, 0.3);
 
   /* Typography Colors */
-  --text-primary: #f4f4f5;
-  --text-secondary: #a1a1aa;
-  --text-muted: #71717a;
+  --text-primary: #111827;
+  --text-secondary: #667085;
+  --text-muted: #98a2b3;
   --text-on-accent: #ffffff;
 
   /* Accent & Status Colors */
-  --accent-primary: #6366f1;
-  --accent-primary-hover: #4f46e5;
-  --accent-glow: rgba(99, 102, 241, 0.15);
-  --accent-emerald: #10b981;
-  --accent-emerald-bg: rgba(16, 185, 129, 0.1);
+  --accent-primary: #5b5fef;
+  --accent-primary-hover: #4b4fdf;
+  --accent-secondary: #7c5cfc;
+  --accent-subtle-bg: #eef0ff;
+  
+  /* Status Colors */
+  --accent-emerald: #22c55e;
+  --accent-emerald-bg: #f0fdf4;
+  --accent-emerald-border: #bbf7d0;
+  
   --accent-amber: #f59e0b;
-  --accent-amber-bg: rgba(245, 158, 11, 0.1);
-  --accent-rose: #f43f5e;
-  --accent-rose-bg: rgba(244, 63, 94, 0.1);
+  --accent-amber-bg: #fffbeb;
+  --accent-amber-border: #fde68a;
+  
+  --accent-rose: #ef4444;
+  --accent-rose-bg: #fef2f2;
+  --accent-rose-border: #fecaca;
+
+  --accent-sky: #0ea5e9;
+  --accent-sky-bg: #f0f9ff;
+  --accent-sky-border: #bae6fd;
 
   /* Radii */
   --radius-sm: 6px;
   --radius-md: 10px;
-  --radius-lg: 16px;
-  --radius-xl: 24px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
   --radius-full: 9999px;
 
   /* Transitions & Shadows */
   --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-smooth: 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  --shadow-card: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
-  --shadow-glow: 0 0 30px rgba(99, 102, 241, 0.12);
+  
+  /* Soft Premium Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(16, 24, 40, 0.05);
+  --shadow-card: 0 4px 20px -2px rgba(16, 24, 40, 0.06), 0 2px 6px -1px rgba(16, 24, 40, 0.03);
+  --shadow-card-hover: 0 12px 28px -4px rgba(16, 24, 40, 0.1), 0 4px 10px -2px rgba(16, 24, 40, 0.04);
+  --shadow-glow: 0 20px 40px -10px rgba(91, 95, 239, 0.12);
 }
 
 /* CSS Reset */
@@ -107,27 +125,30 @@ p {
 }
 
 .btn-primary {
-  background-color: var(--text-primary);
-  color: #09090b;
-  border-color: var(--text-primary);
+  background-color: var(--accent-primary);
+  color: #ffffff;
+  border-color: var(--accent-primary);
+  box-shadow: 0 1px 3px rgba(91, 95, 239, 0.3), 0 2px 6px rgba(91, 95, 239, 0.15);
 }
 
 .btn-primary:hover {
-  background-color: #e4e4e7;
+  background-color: var(--accent-primary-hover);
+  border-color: var(--accent-primary-hover);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 14px rgba(91, 95, 239, 0.35);
 }
 
 .btn-secondary {
-  background-color: var(--bg-surface);
+  background-color: #ffffff;
   color: var(--text-primary);
   border-color: var(--border-subtle);
+  box-shadow: var(--shadow-sm);
 }
 
 .btn-secondary:hover {
-  background-color: var(--bg-card-hover);
+  background-color: var(--bg-secondary);
   border-color: var(--border-strong);
-  color: #ffffff;
+  color: var(--text-primary);
   transform: translateY(-1px);
 }
 
@@ -139,11 +160,11 @@ p {
 
 .btn-ghost:hover {
   color: var(--text-primary);
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: var(--bg-surface);
 }
 
 .btn-sm {
-  padding: 0.5rem 0.875rem;
+  padding: 0.5rem 0.9375rem;
   font-size: 0.875rem;
   border-radius: var(--radius-sm);
 }
@@ -154,11 +175,13 @@ p {
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
   padding: 1.75rem;
+  box-shadow: var(--shadow-card);
   transition: border-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .card:hover {
   border-color: var(--border-strong);
+  box-shadow: var(--shadow-card-hover);
 }
 
 /* Badge Utility */
@@ -166,9 +189,9 @@ p {
   display: inline-flex;
   align-items: center;
   gap: 0.375rem;
-  padding: 0.25rem 0.625rem;
+  padding: 0.2rem 0.55rem;
   font-size: 0.75rem;
-  font-weight: 500;
+  font-weight: 600;
   border-radius: var(--radius-full);
   text-transform: capitalize;
 }
@@ -176,19 +199,19 @@ p {
 .badge-high {
   background-color: var(--accent-rose-bg);
   color: var(--accent-rose);
-  border: 1px solid rgba(244, 63, 94, 0.2);
+  border: 1px solid var(--accent-rose-border);
 }
 
 .badge-medium {
   background-color: var(--accent-amber-bg);
   color: var(--accent-amber);
-  border: 1px solid rgba(245, 158, 11, 0.2);
+  border: 1px solid var(--accent-amber-border);
 }
 
 .badge-low {
   background-color: var(--accent-emerald-bg);
   color: var(--accent-emerald);
-  border: 1px solid rgba(16, 185, 129, 0.2);
+  border: 1px solid var(--accent-emerald-border);
 }
 
 /* Easter Egg Notification Toast */
@@ -196,12 +219,12 @@ p {
   position: fixed;
   bottom: 2rem;
   right: 2rem;
-  background: var(--bg-card);
+  background: #ffffff;
   border: 1px solid var(--accent-primary);
   color: var(--text-primary);
   padding: 1rem 1.25rem;
   border-radius: var(--radius-md);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 12px 32px rgba(17, 24, 39, 0.12);
   display: flex;
   align-items: center;
   gap: 0.75rem;

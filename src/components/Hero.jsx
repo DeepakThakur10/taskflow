@@ -5,6 +5,9 @@ import './Hero.css';
 export default function Hero({ children }) {
   return (
     <section className="hero-section" id="hero">
+      {/* Extremely subtle ambient glow behind dashboard */}
+      <div className="hero-ambient-glow" aria-hidden="true"></div>
+
       <div className="container hero-container">
         
         {/* Subtle pill tag */}
@@ -13,11 +16,11 @@ export default function Hero({ children }) {
           <span>Productivity Redefined</span>
         </div>
 
-        {/* Hero Main Headline */}
+        {/* Hero Main Headline with subtle accent highlight */}
         <h1 className="hero-headline">
           Stop managing your work.
           <br />
-          <span className="hero-headline-gradient">Start moving it forward.</span>
+          Start <span className="hero-highlight">moving it forward.</span>
         </h1>
 
         {/* Supporting Copy */}

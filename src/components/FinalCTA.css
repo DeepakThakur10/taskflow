@@ -1,15 +1,18 @@
 .final-cta-section {
   padding: 6rem 0;
-  background-color: var(--bg-page);
+  background-color: var(--bg-soft-section);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
 }
 
 .final-cta-card {
   text-align: center;
   padding: 4.5rem 2rem;
-  background: radial-gradient(circle at top, rgba(99, 102, 241, 0.12) 0%, var(--bg-card) 70%);
-  border: 1px solid var(--border-accent);
+  background: linear-gradient(180deg, #ffffff 0%, #f8f9fc 100%);
+  border: 1px solid var(--border-subtle);
   position: relative;
   overflow: hidden;
+  box-shadow: var(--shadow-card);
 }
 
 .cta-headline {
@@ -17,6 +20,7 @@
   font-weight: 700;
   margin-bottom: 1rem;
   letter-spacing: -0.03em;
+  color: var(--text-primary);
 }
 
 .cta-subtext {
@@ -35,7 +39,7 @@
 .cta-btn {
   font-size: 1.0625rem;
   padding: 0.9375rem 2rem;
-  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 16px rgba(91, 95, 239, 0.25);
 }
 
 .cta-bullets {
@@ -50,7 +54,8 @@
   align-items: center;
   gap: 0.5rem;
   font-size: 0.875rem;
-  color: var(--text-muted);
+  color: var(--text-secondary);
+  font-weight: 500;
 }
 
 .bullet-icon {

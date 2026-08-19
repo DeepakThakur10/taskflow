@@ -5,13 +5,16 @@
 
 ---
 
-### 1. Architectural & Technical Choices (Why this over alternatives?)
+### 1. Architectural & Visual Design Choices
+
+- **Light Premium SaaS Aesthetic over Generic Dark AI Templates:**  
+  Adopted a clean, calm, white-and-soft-gray visual identity (`#FFFFFF` base, `#F8F9FC` secondary surfaces, `#E7EAF0` subtle borders) paired with selective Indigo/Blue (`#5B5FEF`) accents. This avoids the heavy "dark AI landing page template" look in favor of a trustworthy, modern productivity product aesthetic (inspired by Notion, Linear, and Raycast light modes).
 
 - **React + Vite over Next.js / Heavy Frameworks:**  
   Selected a pure React + Vite single-page setup to maximize runtime performance, minimize bundle overhead (0 server dependencies), and ensure every line of code can be explained clearly during an interview call without framework abstraction magic (SSR, hydration quirks, or complex router configurations).
 
 - **Standard CSS Design Tokens over Tailwind / UI Component Libraries:**  
-  Built a bespoke CSS design system using native CSS variables (`:root`). This provides total control over Obsidian dark mode surfaces, precise micro-animations, hairline borders, and fluid typography without introducing utility bloat or third-party CSS library lock-in.
+  Built a bespoke CSS design system using native CSS variables (`:root`). This provides total control over light mode surfaces, precise micro-animations, hairline borders, and fluid typography without introducing utility bloat or third-party CSS library lock-in.
 
 - **Lifted Local State (`useState`) over Redux / Zustand:**  
   State management for demo task completion and focus timing is elevated to the root component (`App.jsx`) and passed down via explicit React props. Derived values (such as completed count and progress percentage) are computed on the fly during rendering rather than stored redundantly in state.

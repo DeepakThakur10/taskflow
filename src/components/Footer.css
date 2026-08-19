@@ -1,7 +1,6 @@
 .footer-section {
-  padding: 3rem 0;
-  background-color: #060608;
-  border-top: 1px solid var(--border-subtle);
+  padding: 3.5rem 0;
+  background-color: #ffffff;
 }
 
 .footer-container {
@@ -27,7 +26,7 @@
   width: 28px;
   height: 28px;
   border-radius: var(--radius-sm);
-  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+  background: linear-gradient(135deg, #5b5fef 0%, #4b4fdf 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -37,11 +36,12 @@
 .footer-logo-text {
   font-weight: 700;
   font-size: 1.0625rem;
+  color: var(--text-primary);
 }
 
 .footer-tagline {
   font-size: 0.8125rem;
-  color: var(--text-muted);
+  color: var(--text-secondary);
 }
 
 .footer-links-group {
@@ -54,6 +54,7 @@
   color: var(--text-secondary);
   text-decoration: none;
   font-size: 0.875rem;
+  font-weight: 500;
   transition: color var(--transition-fast);
 }
 
