@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar.jsx';
 import Hero from './components/Hero.jsx';
 import ProductPreview from './components/ProductPreview.jsx';
@@ -6,7 +6,7 @@ import FeatureSection from './components/FeatureSection.jsx';
 import HowItWorks from './components/HowItWorks.jsx';
 import FinalCTA from './components/FinalCTA.jsx';
 import Footer from './components/Footer.jsx';
-import { Sparkles, X } from 'lucide-react';
+import { Sparkles, X, Gamepad2 } from 'lucide-react';
 
 export default function App() {
   // Initial realistic demo tasks state
@@ -41,9 +41,45 @@ export default function App() {
     }
   ]);
 
-  // Easter Egg State (Click logo 3 times to unlock hidden easter egg)
+  // Easter Egg States
   const [logoClicks, setLogoClicks] = useState(0);
   const [showEasterEgg, setShowEasterEgg] = useState(false);
+  const [easterEggMessage, setEasterEggMessage] = useState({
+    title: 'Easter Egg Found! 🎉',
+    desc: 'TaskFlow secret speed mode unlocked. Keep moving forward!'
+  });
+
+  // Konami Code Listener (↑ ↑ ↓ ↓ ← → ← → b a)
+  useEffect(() => {
+    const konamiCode = [
+      'ArrowUp', 'ArrowUp', 
+      'ArrowDown', 'ArrowDown', 
+      'ArrowLeft', 'ArrowRight', 
+      'ArrowLeft', 'ArrowRight', 
+      'b', 'a'
+    ];
+    let konamiIndex = 0;
+
+    const handleKeyDown = (e) => {
+      // Check if key matches current position in Konami code
+      if (e.key.toLowerCase() === konamiCode[konamiIndex].toLowerCase()) {
+        konamiIndex++;
+        if (konamiIndex === konamiCode.length) {
+          setEasterEggMessage({
+            title: '🎮 KONAMI CODE UNLOCKED! 🚀',
+            desc: 'Acdyon Secret Konami Mode Activated! +100 Productivity Points.'
+          });
+          setShowEasterEgg(true);
+          konamiIndex = 0;
+        }
+      } else {
+        konamiIndex = 0; // reset sequence if wrong key pressed
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   // Toggle task completed status
   const handleToggleTask = (taskId) => {
@@ -59,6 +95,10 @@ export default function App() {
     setLogoClicks(prev => {
       const nextCount = prev + 1;
       if (nextCount >= 3) {
+        setEasterEggMessage({
+          title: 'Logo Secret Unlocked! ⚡',
+          desc: 'You clicked the TaskFlow logo 3 times! Acdyon reviewer bonus activated.'
+        });
         setShowEasterEgg(true);
         return 0;
       }
@@ -91,11 +131,11 @@ export default function App() {
       {/* Hidden Easter Egg Toast */}
       {showEasterEgg && (
         <div className="easter-egg-toast">
-          <Sparkles size={20} style={{ color: '#6366f1' }} />
+          <Gamepad2 size={22} style={{ color: '#5b5fef' }} />
           <div>
-            <strong>Easter Egg Found! 🎉</strong>
-            <p style={{ fontSize: '0.8125rem', color: '#a1a1aa', margin: 0 }}>
-              TaskFlow secret speed mode unlocked. Keep moving forward!
+            <strong>{easterEggMessage.title}</strong>
+            <p style={{ fontSize: '0.8125rem', color: '#667085', margin: 0 }}>
+              {easterEggMessage.desc}
             </p>
           </div>
           <button 
@@ -103,10 +143,12 @@ export default function App() {
             style={{ 
               background: 'transparent', 
               border: 'none', 
-              color: '#a1a1aa', 
+              color: '#98a2b3', 
               cursor: 'pointer',
-              marginLeft: '0.5rem'
+              marginLeft: '0.75rem',
+              padding: '0.25rem'
             }}
+            aria-label="Close easter egg notification"
           >
             <X size={16} />
           </button>

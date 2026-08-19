@@ -5,40 +5,43 @@
 
 ---
 
-### 1. Architectural & Visual Design Choices
+### 1. Why this architecture strategy over the obvious alternative rejected?
 
-- **Light Premium SaaS Aesthetic over Generic Dark AI Templates:**  
-  Adopted a clean, calm, white-and-soft-gray visual identity (`#FFFFFF` base, `#F8F9FC` secondary surfaces, `#E7EAF0` subtle borders) paired with selective Indigo/Blue (`#5B5FEF`) accents. This avoids the heavy "dark AI landing page template" look in favor of a trustworthy, modern productivity product aesthetic (inspired by Notion, Linear, and Raycast light modes).
+I chose a **React + Vite + Vanilla CSS** single-page architecture over Next.js / Server-Side Rendering (SSR) and heavy state management libraries like Redux or Zustand. 
 
-- **React + Vite over Next.js / Heavy Frameworks:**  
-  Selected a pure React + Vite single-page setup to maximize runtime performance, minimize bundle overhead (0 server dependencies), and ensure every line of code can be explained clearly during an interview call without framework abstraction magic (SSR, hydration quirks, or complex router configurations).
-
-- **Standard CSS Design Tokens over Tailwind / UI Component Libraries:**  
-  Built a bespoke CSS design system using native CSS variables (`:root`). This provides total control over light mode surfaces, precise micro-animations, hairline borders, and fluid typography without introducing utility bloat or third-party CSS library lock-in.
-
-- **Lifted Local State (`useState`) over Redux / Zustand:**  
-  State management for demo task completion and focus timing is elevated to the root component (`App.jsx`) and passed down via explicit React props. Derived values (such as completed count and progress percentage) are computed on the fly during rendering rather than stored redundantly in state.
+- **Why rejected Next.js:** SSR and routing magic add unnecessary bundle weight and runtime complexity for a focused, single-page product demonstration. A pure Vite React client app loads instantly, has zero server infrastructure dependencies, and compiles in < 7 seconds.
+- **Why rejected Redux / Zustand:** Local React state (`useState`) passed via explicit props is sufficient for interactive task checking and timing. Deriving progress percentages dynamically during render eliminates state duplication bugs.
+- **Why rejected Tailwind CSS / UI Libraries:** Custom CSS custom properties (`:root`) provide full design freedom over the Light Premium SaaS theme (white `#FFFFFF`, soft gray `#F8F9FC`, subtle `#E7EAF0` borders, indigo `#5B5FEF` accents) without utility class noise.
 
 ---
 
-### 2. Trade-offs Made Under Time Limit & Future Plan
+### 2. One trade-off made under the time limit, and what I'd do with a real week.
 
 - **Trade-off:**  
-  Static demo dataset in local state instead of dynamic local storage persistence or drag-and-drop task reordering.
+  In-memory demo task state without `localStorage` persistence or drag-and-drop task re-prioritization.
   
 - **What I would build with a full week:**
-  1. **Drag-and-Drop Task Reordering:** Implement native HTML5 drag-and-drop or lightweight gesture handlers for custom task prioritization.
-  2. **Keyboard Shortcuts:** Global hotkeys (e.g., `Cmd+K` palette, `Space` for timer start, `N` for new task).
-  3. **Local Storage Sync:** Persist user-checked tasks and timer preferences across browser refreshes.
+  1. **Drag-and-Drop Task Reordering:** Native HTML5 or touch-friendly drag handles so users can manually rank daily priorities.
+  2. **Keyboard Command Palette (`Cmd+K`):** Quick-capture shortcuts for adding tasks, toggling focus mode, or resetting the timer without using the mouse.
+  3. **Local Storage Sync:** Persist checked tasks, custom task additions, and timer settings across page reloads.
 
 ---
 
-### 3. AI Tool Usage & Verification
+### 3. Where did AI tools get used, and what was personally verified or changed afterward?
 
-- **AI Utilization:**  
-  AI assistance was used for scaffolding component templates, generating baseline CSS reset variables, and creating initial mock task datasets.
+- **Where AI was used:**  
+  Generating initial React component boilerplate, drafting baseline CSS reset properties, and creating mock task items.
 
-- **Personal Verification & Modifications:**  
-  - Hand-tuned all responsive layout breakpoints (390px, 768px, 1024px, 1440px) to guarantee zero horizontal scroll.
-  - Refactored task progress calculation logic to ensure pure rendering without state side-effects.
-  - Implemented `@media (prefers-reduced-motion)` for motion accessibility.
+- **What I personally verified and changed afterward:**
+  - **Color Palette & Visual Tone:** Shifted the interface from an oversized dark AI template look to a restrained, light-themed premium SaaS aesthetic with intentional blue/indigo accent scoping.
+  - **Responsive Breakpoint Testing:** Tested layout rendering at 390px, 768px, 1024px, and 1440px to ensure zero horizontal scrolling and proper mobile menu drawer functionality.
+  - **State Pureness:** Verified that progress bar percentages and task counts are derived reactively without state side-effects.
+  - **Accessibility:** Enforced `@media (prefers-reduced-motion: reduce)` rules for motion-sensitive users.
+
+---
+
+### 🕹️ Bonus Round: Hidden Easter Eggs
+
+For the Acdyon team to find:
+1. **Konami Code:** Type `↑ ↑ ↓ ↓ ← → ← → b a` anywhere on the keyboard to trigger the Secret Konami Mode.
+2. **Logo Secret:** Click the top-left TaskFlow logo 3 times in a row.
